@@ -1,5 +1,5 @@
 
-  MDC: Classical Molecular Dynamics Simulation Package in C
+* MDC: Classical Molecular Dynamics Simulation Package in C
 
   kazume.nishidate@gmail.com
 -------------------------------------------------------------
