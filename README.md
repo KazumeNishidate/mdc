@@ -40,8 +40,6 @@
        and Complex Valiable with High Relative Accuracy", RIMS, Kyoto
        University Japan, 19, 1081 (1983).
 
-  [9] S. Okazaki, "COMPUTER SIMULATION NO KISO" (Japanese),
-       Kagaku-dojin, (2000).
 -------------------------------------------------------------
 
 << MD calculational unit >>---------------------------------------------
