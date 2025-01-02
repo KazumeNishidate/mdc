@@ -258,8 +258,8 @@ void   md_xyz(void)
   fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
   for(i=0;i<sys.N;i++) { /* [A] unit */
     if(sys.ion[i]==0) {
-      fprintf(fpmdxyz,"I ");
-    } else {fprintf(fpmdxyz,"Ag ");
+      fprintf(fpmdxyz,"Na ");
+    } else {fprintf(fpmdxyz,"Cl ");
     }
     fprintf(fpmdxyz," %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
   }
