@@ -14,7 +14,7 @@
 *****/
 void get_control_param(void)
 {
-  ctl.calc_max = 10000;       /* maximum MD time step                       */
+  ctl.calc_max = 200000;       /* maximum MD time step                       */
   ctl.delta_time_fs = 3.0;    /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s]   */
 
   ctl.temp = 300.0;           /* Temperature setting [K]                    */
@@ -29,17 +29,17 @@ void get_control_param(void)
   sys.Ax = 5.63;              /* lattice constant of unit cell [NaCl]       */
   sys.Ay = 5.63;
   sys.Az = 5.63;
-  sys.nx = 3;	              /* number of unit cells in x-direction        */
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;	              /* number of unit cells in x-direction        */
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 8;     /* number of atoms in unit cell          */
   ctl.natoms_in_mol_unit  = 2;     /* number of atoms in primitive Mol unit */
   ctl.kinds_of_ions       = 2;     /* Na or Cl */
 
   sys.a1     = 0.20375; /* alpha setting for EWALD calculation               */
-  sys.hm     = 20;      /* = |n^2| : cutoff for the reciprocal lattice vector*/
-  sys.radius = 8.0;     /* cutoff radious [A] in real-space                  */
+  sys.hm     = 25;      /* = |n^2| : cutoff for the reciprocal lattice vector*/
+  sys.radius = 10.0;     /* cutoff radious [A] in real-space                  */
                         /* sys.radius < Min[MD-basic-cell dimension]/2 [A]   */
 }
 
