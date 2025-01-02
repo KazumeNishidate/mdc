@@ -186,22 +186,4 @@ void   r_velocities(void)
   fprintf(fpout_velocities,"\n");
 }
 
-void   md_xyz(void)
-{
-  int i;
-
-  fprintf(fpmdxyz,"%6d \n",sys.N);
-  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
-  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
-  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
-  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
-  for(i=0;i<sys.N;i++) { /* [A] unit */
-    if(sys.ion[i]==0) {
-      fprintf(fpmdxyz,"I ");
-    } else {fprintf(fpmdxyz,"Ag ");
-    }
-    fprintf(fpmdxyz," %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
-  }
-}
-
 
