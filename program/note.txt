@@ -1,19 +1,9 @@
-Silicon (diamond structure) with Stillinger Weber potential.
+NaCl crystal with Huggins-Mayer potentail.
 
-dt = 0.38317 [fs]
-system size = 5x5x5, diamond structure
+potential function;  generalized Huggins-Mayer form
+parameters;          Tosi-Fumi set
 
-The valiable "sys.a1" in get_control_param() of control.c was set to
-0.0 to SKIP the EWALD calculation.
+REF.: 
 
-REFs.:
-
-Takanobu Watanabe, "Molecular Dynamics and Interatomic Potentials",
-in Japanese, MORIKITA Syuppann, Tokyo (2023)
-
-
-F. H. Stillinger and T. A. Weber, "Computer simulation of local
-order in condensed phases of silicon", Phys. Rev. B., Vol. 31, No. 8,
-5262 (1985)
-
-
+[1] F. G. Fumi and M. P. Tosi, J. Phys. Chem. Solids, Vol. 25, 31 (1964).
+[2] M. P. Tosi and F. G. Fumi, J. Phys. Chem. Solids, Vol. 25, 45 (1964).
