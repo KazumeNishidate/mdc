@@ -17,7 +17,7 @@ void get_control_param(void)
   ctl.calc_max = 400000;       // maximum MD time step                     
   ctl.delta_time_fs = 0.38317; // 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s] 
 
-  ctl.temp = 100.0;           // Temperature setting [K]                   
+  ctl.temp = 300.0;           // Temperature setting [K]                   
   ctl.t_control_step = 5;     // scale at every ctl.t_control_step steps   
   ctl.set_press_GPa_X = 0.01; // Pressure setting  [GPa]                   
   ctl.set_press_GPa_Y = 0.01; 
@@ -28,9 +28,9 @@ void get_control_param(void)
   sys.Ax = 5.65;   // initial lattice constant [Ge with diamond structure]
   sys.Ay = 5.65;
   sys.Az = 5.65;
-  sys.nx = 3;	   // number of unit cells in x-direction 
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;	   // number of unit cells in x-direction 
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 8;  // number of atoms in unit cell          
   ctl.natoms_in_mol_unit  = 2;  // number of atoms in primitive Mol unit 
@@ -140,6 +140,19 @@ void mk_table(void)
   /*  this function do nothing.  see "real.c".                     */
 }
 
+void   md_xyz(void)
+{
+  int i;
+
+  fprintf(fpmdxyz,"%6d \n",sys.N);
+  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
+  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
+  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
+  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
+  for(i=0;i<sys.N;i++) { /* [A] unit */
+    fprintf(fpmdxyz,"Ge %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
+  }
+}
 
 
 

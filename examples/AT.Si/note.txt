@@ -1,7 +1,7 @@
 Silicon (diamond structure) with Abell-Tersoff potential.
 
 dt = 0.38317 [fs]
-system size = 3x3x3
+system size = 5x5x5
 
 The valiable "sys.a1" in get_control_param() of control.c was set to
 0.0 to SKIP the EWALD calculation.

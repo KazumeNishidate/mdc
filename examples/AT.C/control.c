@@ -28,9 +28,9 @@ void get_control_param(void)
   sys.Ax = 3.56;   // initial lattice constant [C with diamond structure] 
   sys.Ay = 3.56;
   sys.Az = 3.56;
-  sys.nx = 3;	  // number of unit cells in x-direction 
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;	  // number of unit cells in x-direction 
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 8;     /* number of atoms in unit cell          */
   ctl.natoms_in_mol_unit  = 2;     /* number of atoms in primitive Mol unit */
@@ -137,6 +137,20 @@ void mk_table(void)
 {
   /*  Carbon (diamond structure) with Abell Tersoff potential      */
   /*  this function do nothing.  see "real.c".                     */
+}
+
+void   md_xyz(void)
+{
+  int i;
+
+  fprintf(fpmdxyz,"%6d \n",sys.N);
+  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
+  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
+  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
+  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
+  for(i=0;i<sys.N;i++) { /* [A] unit */
+    fprintf(fpmdxyz,"C %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
+  }
 }
 
 
