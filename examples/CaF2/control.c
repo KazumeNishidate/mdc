@@ -14,8 +14,8 @@
 *****/
 void get_control_param(void)
 {
-  ctl.calc_max = 10000;      /* maximum MD time step                     */
-  ctl.delta_time_fs = 2.34;  /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s] */
+  ctl.calc_max = 200000;      /* maximum MD time step                     */
+  ctl.delta_time_fs = 2.0;   /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s] */
 
   ctl.temp = 100.0;         /* Temperature setting [K] */
   ctl.t_control_step = 10;   /* scale at every ctl.t_control_step steps  */
@@ -29,9 +29,9 @@ void get_control_param(void)
   sys.Ax = 5.9;      /* initial lattice constant [CaF2]              */
   sys.Ay = 5.9;
   sys.Az = 5.9;
-  sys.nx = 3;        /* number of unit cells in x-direction */
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;        /* number of unit cells in x-direction */
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 12;    /* number of atoms in unit cell          */
   ctl.natoms_in_mol_unit  = 3;     /* number of atoms in primitive Mol unit */
@@ -39,7 +39,7 @@ void get_control_param(void)
 
   sys.a1   = 0.2;    /* alpha setting for EWALD calculation */
   sys.hm   = 23;     /* = |n^2| : cutoff for the reciprocal lattice vector */
-  sys.radius = 7.5;  /* cutoff radious [A] in real-space                   */
+  sys.radius = 13.0; /* cutoff radious [A] in real-space                   */
                      /* sys.radius < Min[MD-basic-cell dimension]/2 [A]    */
 }
 
@@ -155,7 +155,7 @@ void mk_table(void)   /* make a look up table for [CaF2] potential */
 
       for(ddr=0;ddr<sys.table_division+1;ddr++) {  /* division = 0.001 [A]  */
 
-	dr = ((double)ddr)/1000.0 + 0.5; /* 0.5 [A] to sys.radius (cut-off) */
+	dr = ((double)ddr)/(FP_ARRAY) + 0.5;
 	adr = sys.a1 * dr;  
 	erfc_adr_per_dr = erfcc(adr)/dr;
 
@@ -188,5 +188,22 @@ void mk_table(void)   /* make a look up table for [CaF2] potential */
       sys.lookup[ctl.kinds_of_ions * ion_j + ion_i] = ij;
       ij++;  /* shift the look-up table column */
     }
+  }
+}
+void   md_xyz(void)
+{
+  int i;
+
+  fprintf(fpmdxyz,"%6d \n",sys.N);
+  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
+  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
+  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
+  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
+  for(i=0;i<sys.N;i++) { /* [A] unit */
+    if(sys.ion[i]==0) {
+      fprintf(fpmdxyz,"Ca ");
+    } else {fprintf(fpmdxyz,"F ");
+    }
+    fprintf(fpmdxyz," %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
   }
 }

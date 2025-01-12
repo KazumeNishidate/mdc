@@ -14,7 +14,8 @@
 #define  SQRTPI     1.77245385090551602731  /* Sqrt(Pi)                    */
 #define  SECD_2_FS  4.074972637944947       /* second' (IEMD unit) -> fsec */
 
-#define  AVOGADRO   6.0221367e5             /* Avogadro constant in IEMD unit  */
+#define  AVOGADRO   6.0221367e5             /* Avogadro constant in IEMD unit        */
+#define  FP_ARRAY   10000                   /* A number of the array for force calc. */
 
 /* input and output files */
 FILE *fpout, *fpout_positions, *fpout_velocities, *fpmdxyz;

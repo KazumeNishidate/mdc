@@ -57,7 +57,7 @@ void  newton(void)
     if(sys.step % 1000 == 0){moment_correction();};
     
     // record position data in the MD calculation
-    if(sys.step % 10 == 0){md_xyz();};            
+    md_xyz();
 
     /*-------------- X interface -------------------*/
 #ifdef XD 

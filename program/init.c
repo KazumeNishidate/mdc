@@ -61,8 +61,7 @@ void unit_converter(void)
   ctl.press_Z = ctl.set_press_GPa_Z*press_unit_conversion;  
 
   /* potential and force table for <Ewald 1st term> + <repulsion>    */
-  /* 0.5 [A] upto sys.radius with 0.001[A] division.                  */
-  sys.table_division = (int)((sys.radius - 0.5)*1000.0)+1;
+  sys.table_division = (int)((sys.radius - 0.5)*(FP_ARRAY))+1;
 
   sys.kB = 1.380658e-5;   /* Boltzmann constant [IEMD unit] */
   sys.kk = 2.307079556;   /* e^2/(4 Pi epsilon) [IEMD unit] */
@@ -119,7 +118,6 @@ void   init_mem(void)
 
 
   /* potential and force table for <Ewald 1st term> + <repulsion>    */
-  /* 0.5 [A] upto sys.radius with 0.001[A] division.                  */
   /*                                                                  */
   /* table_division = total number of divisions (column number)       */
   /* ddr = (int)[(0.5 [A] to sys.radius (cut-off radius)) - 0.5 [A]]  */

@@ -39,7 +39,7 @@ void get_control_param(void)
 
   sys.a1     = 0.20375; /* alpha setting for EWALD calculation               */
   sys.hm     = 25;      /* = |n^2| : cutoff for the reciprocal lattice vector*/
-  sys.radius = 10.0;     /* cutoff radious [A] in real-space                  */
+  sys.radius = 12.0;     /* cutoff radious [A] in real-space                  */
                         /* sys.radius < Min[MD-basic-cell dimension]/2 [A]   */
 }
 
@@ -218,7 +218,7 @@ void mk_table(void)   /* make a look up table for BMH potential */
 
       for(ddr=0;ddr<sys.table_division+1;ddr++) {  /* division = 0.001 [A] */
 
-	dr = ((double)ddr)/1000.0 + 0.5; /* 0.5 [A] to sys.radius (cut-off) */
+	dr = ((double)ddr)/(FP_ARRAY) + 0.5; /* 0.5 [A] to sys.radius (cut-off) */
 	dr6 = dr*dr*dr*dr*dr*dr;
 	dr8 = dr6*dr*dr;
 	adr = sys.a1 * dr;  

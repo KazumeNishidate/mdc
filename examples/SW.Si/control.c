@@ -4,14 +4,17 @@
 #include  "md.h"
 #include  "prototypes.h"
 
-/*********************************************************************/
-/*  Silicon (diamond structure) with Stillinger Weber potential      */
-/*********************************************************************/
-/*****
-*  purpose: system initialisation
-*  all valiables are specified in a MD calculational unit.
-*  see also [manual/units.IEMD]
-*****/
+/***********************************************************************************/
+//  Silicon (diamond structure) with Stillinger Weber potential
+//
+// REFs.:
+// Takanobu Watanabe, "Molecular Dynamics and Interatomic Potentials",
+// p.102, MORIKITA Syuppann, Tokyo (2023), in Japanese.
+// 
+// F. H. Stillinger and T. A. Weber, "Computer simulation of local
+// order in condensed phases of silicon", Phys. Rev. B., Vol. 31, No. 8, 5262 (1985)
+//
+/***********************************************************************************/
 void get_control_param(void)
 {
   ctl.calc_max = 400000;  /* maximum MD time step                     */
@@ -28,9 +31,9 @@ void get_control_param(void)
   sys.Ax = 5.42;   /* initial lattice constant [Si with diamond structure] */
   sys.Ay = 5.42;
   sys.Az = 5.42;
-  sys.nx = 3;	   /* number of unit cells in x-direction */
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;	   /* number of unit cells in x-direction */
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 8;     /* number of atoms in unit cell          */
   ctl.natoms_in_mol_unit  = 2;     /* number of atoms in primitive Mol unit */
@@ -40,8 +43,6 @@ void get_control_param(void)
   sys.a1   = 0.0;   /* to SKIP the EWALD calculation */
   sys.hm = 20;      /* has no meaning for SW-Si */
 
-  /* cutoff radious in real-space */
-  sys.radius = 1.8; /* [A] SW potential set */
 }
 
 /*****
@@ -120,13 +121,13 @@ void set_potential(void)
   ion.m[0] = m_Si;
 
   /* ------------ S.W Potential Set --------------*/
-  sw.ep = 2.1672 * 1.60217733e-1;  /* [eV -> en] */
-  sw.sig = 2.0;                 /* [A] */
-  sw.A = 7.049556277;
-  sw.B = 0.6022245584;
-  sw.a = 1.8;                      /* = sys.radius = cut-off radius */
-  sw.lam = 21.0;
-  sw.gam = 1.2;
+  sw.ep = (50.0* 0.04337) * 1.60217733e-1;  /* [eV -> energy] */
+  sw.sig = 2.0951;                 /* [A] */
+  sw.A = 7.049556277*sw.ep;        /* [energy]       */
+  sw.B = 0.6022245584*(sw.sig*sw.sig*sw.sig*sw.sig);
+  sw.a = 1.8*sw.sig;               /* cut-off radius */
+  sw.lam = 21.0*sw.ep;
+  sw.gam = 1.2*sw.sig;
   sw.beta = -2.0*sw.ep*sw.lam;
   /* ---------------------------------------------*/
 
@@ -139,7 +140,18 @@ void mk_table(void)
 }
 
 
+void   md_xyz(void)
+{
+  int i;
 
-
-
+  fprintf(fpmdxyz,"%6d \n",sys.N);
+  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
+  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
+  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
+  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
+  for(i=0;i<sys.N;i++) { /* [A] unit */
+    fprintf(fpmdxyz,"Si ");
+  }
+    fprintf(fpmdxyz," %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
+}
 

@@ -14,8 +14,8 @@
 *****/
 void get_control_param(void)
 {
-  ctl.calc_max = 10000;       /* maximum MD time step                       */
-  ctl.delta_time_fs = 3.0;    /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s]   */
+  ctl.calc_max = 200000;       /* maximum MD time step                       */
+  ctl.delta_time_fs = 2.0;    /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s]   */
 
   ctl.temp = 300.0;           /* Temperature setting [K]                    */
   ctl.t_control_step = 5;     /* scale at every ctl.t_control_step steps    */
@@ -29,17 +29,17 @@ void get_control_param(void)
   sys.Ax = 5.63;              /* lattice constant of unit cell [NaCl]       */
   sys.Ay = 5.63;
   sys.Az = 5.63;
-  sys.nx = 3;	              /* number of unit cells in x-direction        */
-  sys.ny = 3;
-  sys.nz = 3;
+  sys.nx = 5;	              /* number of unit cells in x-direction        */
+  sys.ny = 5;
+  sys.nz = 5;
 
   ctl.natoms_in_unit_cell = 8;     /* number of atoms in unit cell           */
   ctl.natoms_in_mol_unit  = 2;     /* number of atoms in primitive Mol unit  */
   ctl.kinds_of_ions       = 2;     /* Na or Cl */
 
-  sys.a1     = 0.3; /* alpha setting for EWALD calculation               */
-  sys.hm     = 20;      /* = |n^2| : cutoff for the reciprocal lattice vector*/
-  sys.radius = 8.0;     /* cutoff radious [A] in real-space                  */
+  sys.a1     = 0.3;     /* alpha setting for EWALD calculation               */
+  sys.hm     = 23;      /* = |n^2| : cutoff for the reciprocal lattice vector*/
+  sys.radius = 12.0;    /* cutoff radious [A] in real-space                  */
                         /* sys.radius < Min[MD-basic-cell dimension]/2 [A]   */
 }
 
@@ -194,9 +194,9 @@ void mk_table(void)   /* make a look up table for SX1 [NaCl] potential */
       b = sx1.beta[ion_i] + sx1.beta[ion_j];
       ZZ = ion.Z[ion_i] * ion.Z[ion_j];
 
-      for(ddr=0;ddr<sys.table_division+1;ddr++) {  /* division = 0.001 [A] */
+      for(ddr=0;ddr<sys.table_division+1;ddr++) {  /* division = 0.0001 [A] */
 
-	dr = ((double)ddr)/1000.0+0.5;  /* 0.5 [A] to sys.radius (cut-off) */
+	dr = ((double)ddr)/(FP_ARRAY)+0.5;  /* 0.5 [A] to sys.radius (cut-off) */
 	adr = sys.a1 * dr;  
 	erfc_adr_per_dr = erfcc(adr)/dr;
 
@@ -218,6 +218,24 @@ void mk_table(void)   /* make a look up table for SX1 [NaCl] potential */
       sys.lookup[ctl.kinds_of_ions * ion_j + ion_i] = ij;
       ij++;  /* shift the look-up table column */
     }
+  }
+}
+
+void   md_xyz(void)
+{
+  int i;
+
+  fprintf(fpmdxyz,"%6d \n",sys.N);
+  fprintf(fpmdxyz,"Lattice=\"%3.6f 0.0 0.0 ",sys.Lx);
+  fprintf(fpmdxyz,"0.0 %3.6f 0.0 ",sys.Ly);
+  fprintf(fpmdxyz,"0.0 0.0 %3.6f\" ",sys.Lz);
+  fprintf(fpmdxyz,"Properties=species:S:1:pos:R:3 %6d\n",sys.step);    
+  for(i=0;i<sys.N;i++) { /* [A] unit */
+    if(sys.ion[i]==0) {
+      fprintf(fpmdxyz,"Na ");
+    } else {fprintf(fpmdxyz,"Cl ");
+    }
+    fprintf(fpmdxyz," %3.6f   %3.6f   %3.6f \n", sys.rx[i],sys.ry[i],sys.rz[i]);
   }
 }
 

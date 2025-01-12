@@ -121,7 +121,7 @@
 
    [energy] -> [energy][mol^{-1}] -> [J][mol^{-1}]                       
     N_A [avogadro constant] = 6.0221367 x 10^{23}                          
-                            = 6.0221367e5 [in IEMD unit] 
+                            = 6.0221367e5 [in MDC unit] 
                                                                          
    [energy] = 10^{-18} [J]                                               
    [energy][mol^{-1}] = 10^{-18} x 6.0221367 x 10^{23} [J][mol^{-1}]     
@@ -134,7 +134,7 @@
 
   [energy] -> [J][mol^{-1}]  unit conversion 
   sys.perMol = AVOGADRO/((double)(sys.N/ctl.natoms_in_mol_unit)); 
-  * AVOGADRO = 6.0221367e5 [in IEMD unit] 
+  * AVOGADRO = 6.0221367e5 [in MDC unit] 
 
   [energy] -> [temperature] = [K]                         
    sys.e2t = 2.0 / (3.0 * (double)(sys.N) * sys.kB);

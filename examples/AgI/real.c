@@ -59,7 +59,7 @@ void	real_space(void)
       ij = sys.lookup[sys.ion[i]*(ctl.kinds_of_ions) + sys.ion[j]];
 
       /* dr' -> sqrt(dr) */
-      ddr = (int)((sqrt(dr)-0.5)*1000.0);
+      ddr = (int)((sqrt(dr)-0.5)*(FP_ARRAY));
 
       /* look-up the table */
       pij = *(sys.pe1r1+ij*(sys.table_division+1)+ddr);
@@ -82,3 +82,4 @@ void	real_space(void)
     }	     
   }
 }
+

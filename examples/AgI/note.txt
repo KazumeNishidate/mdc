@@ -1,16 +1,5 @@
  AgI (super ionic conductor)
 
-----------------------------------------------------------------------
- dt = 1.0 [fs]
- system size = 3 x 3 x 3
- alpha = 0.1 [A^(-1)]
- sys.hm = 23
- cut off = 7.5 [A]
-
- initial temperature 
- ctl.temp = 100.0 [K]
-
-----------------------------------------------------------------------
 REF.:
 
 [1] Y. Kaneko and A. Ueda, "Dynamic Correlation and Cation Diffusion
