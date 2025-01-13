@@ -243,15 +243,4 @@ void	real_space(void) {
     } /*--- end j loop ---*/
   } /*--- end i loop ---*/
 
-  sys.pot /= 2.0;
-  for(i=0;i<sys.N;i++) {
-    sys.fx[i] /= 2.0;
-    sys.fy[i] /= 2.0;
-    sys.fz[i] /= 2.0;
-  }
-
-  sys.virX /= 2.0;
-  sys.virY /= 2.0;
-  sys.virZ /= 2.0;
-
 }

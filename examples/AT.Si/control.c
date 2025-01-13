@@ -123,7 +123,7 @@ void set_potential(void)
   at.d = 16.217;
   at.h = -0.59825;
   at.R = 2.7;            
-  at.S = 3.0;               /* = sys.radius = cut-off radius */
+  at.S = 3.0;  /* = R+D: sys.radius = cut-off radius */
   at.x = 1.0;
 
   /* ---------------------------------------------*/

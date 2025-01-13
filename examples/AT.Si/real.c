@@ -55,10 +55,6 @@ void	real_space(void) {
       if(yij < -rdy) yij += sys.Ly;
       if(zij < -rdz) zij += sys.Lz;
 
-      if(xij > at.S || xij < -at.S) continue;
-      if(yij > at.S || yij < -at.S) continue;
-      if(zij > at.S || zij < -at.S) continue;
-
       rij = sqrt(xij*xij + yij*yij + zij*zij);
 
       /*-----------  f_c(rij) --------------------------------------*/
@@ -91,10 +87,6 @@ void	real_space(void) {
 	if(xik < -rdx) xik += sys.Lx;
 	if(yik < -rdy) yik += sys.Ly;
 	if(zik < -rdz) zik += sys.Lz;
-
-	if(xik > at.S || xik < -at.S) continue;
-	if(yik > at.S || yik < -at.S) continue;
-	if(zik > at.S || zik < -at.S) continue;
 
 	rik = sqrt(xik*xik + yik*yik + zik*zik);
 
@@ -160,10 +152,6 @@ void	real_space(void) {
 	if(xik < -rdx) xik += sys.Lx;
 	if(yik < -rdy) yik += sys.Ly;
 	if(zik < -rdz) zik += sys.Lz;
-
-	if(xik > at.S || xik < -at.S) continue;
-	if(yik > at.S || yik < -at.S) continue;
-	if(zik > at.S || zik < -at.S) continue;
 
 	rik = sqrt(xik*xik + yik*yik + zik*zik);
 
@@ -239,19 +227,7 @@ void	real_space(void) {
 	sys.virZ += (-dzj_theta*zij - dzk_theta*zik)*f3;
 
       } /*--- end 2nd k loop ---*/
-
     } /*--- end j loop ---*/
   } /*--- end i loop ---*/
-
-  sys.pot /= 2.0;
-  for(i=0;i<sys.N;i++) {
-    sys.fx[i] /= 2.0;
-    sys.fy[i] /= 2.0;
-    sys.fz[i] /= 2.0;
-  }
-
-  sys.virX /= 2.0;
-  sys.virY /= 2.0;
-  sys.virZ /= 2.0;
 
 }

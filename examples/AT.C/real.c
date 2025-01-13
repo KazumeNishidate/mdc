@@ -239,19 +239,7 @@ void	real_space(void) {
 	sys.virZ += (-dzj_theta*zij - dzk_theta*zik)*f3;
 
       } /*--- end 2nd k loop ---*/
-
     } /*--- end j loop ---*/
   } /*--- end i loop ---*/
-
-  sys.pot /= 2.0;
-  for(i=0;i<sys.N;i++) {
-    sys.fx[i] /= 2.0;
-    sys.fy[i] /= 2.0;
-    sys.fz[i] /= 2.0;
-  }
-
-  sys.virX /= 2.0;
-  sys.virY /= 2.0;
-  sys.virZ /= 2.0;
 
 }
