@@ -61,7 +61,7 @@ void   print_to_file(void)
 	  sys.Lx/sys.nx,sys.Ly/sys.ny,sys.Lz/sys.nz);
 
   for(atom_kind=0; atom_kind<ctl.kinds_of_ions; atom_kind++){
-    fprintf(fpout,",%.3f",msd.value[atom_kind]);
+    fprintf(fpout,", %.5f",msd.value[atom_kind]);
   } 
   fprintf(fpout,"\n");
 
