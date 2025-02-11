@@ -50,8 +50,10 @@ void  newton(void)
     print_to_file();
 
     /* pressure and temprature control */
-    // control_press(ctl.p_control_step); 
-    // control_temp(ctl.t_control_step, ctl.temp);
+    // control_press(ctl.p_control_step);
+    if(sys.step < 3000){
+      control_temp(ctl.t_control_step, ctl.temp);
+    }
 
     // momentum correction for every 1000 MD steps
     if(sys.step % 1000 == 0){moment_correction();};

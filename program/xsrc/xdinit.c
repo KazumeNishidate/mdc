@@ -7,30 +7,78 @@
 #include  "../md.h"
 #include  "../prototypes.h"
 #include  "xr.h"
-
 void xd_init_set(void)  /* main display set */
 {
   short i, ii;
-
+  Colormap cmap;
+  XColor c0, c1;
+  
   d = XOpenDisplay(NULL); /* connect to the server */
 
   /* Set Color in XD-NET display. See also the "enum" declaration */
-  color[Red]         = MyColor(d,"red");
-  color[Blue]        = MyColor(d,"blue");
-  color[Green]       = MyColor(d,"green");
-  color[Yellow]      = MyColor(d,"yellow");
-  color[Orange]      = MyColor(d,"orange");
-  color[Cyan]        = MyColor(d,"cyan");
-  color[BlueViolet]  = MyColor(d,"blue violet");
-  color[LimeGreen]   = MyColor(d,"lime green");
-  color[Coral]       = MyColor(d,"coral");
-  color[Khaki]       = MyColor(d,"khaki");
-  color[SpringGreen] = MyColor(d,"spring green");
-  color[LightGray]   = MyColor(d,"light gray");
-  color[Magenta]     = MyColor(d,"magenta");
-  color[SlateBlue]   = MyColor(d,"slate blue");
-  color[Black]       = MyColor(d,"black");
-  color[White]       = MyColor(d,"White");
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "red", &c1, &c0);   
+  color[Red] = c1.pixel;
+  
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "blue", &c1, &c0);   
+  color[Blue] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "green", &c1, &c0);   
+  color[Green] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "yellow", &c1, &c0);   
+  color[Yellow] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "orange", &c1, &c0);   
+  color[Orange] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "cyan", &c1, &c0);   
+  color[Cyan] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "blue violet", &c1, &c0);   
+  color[BlueViolet] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "lime green", &c1, &c0);   
+  color[LimeGreen] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "coral", &c1, &c0);   
+  color[Coral] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "khaki", &c1, &c0);   
+  color[Khaki] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "spring green", &c1, &c0);   
+  color[SpringGreen] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "light gray", &c1, &c0);   
+  color[LightGray] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "magenta", &c1, &c0);   
+  color[Magenta] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "slate blue", &c1, &c0);   
+  color[SlateBlue] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "black", &c1, &c0);   
+  color[Black] = c1.pixel;
+
+  cmap = DefaultColormap (d, 0);
+  XAllocNamedColor (d, cmap, "white", &c1, &c0);   
+  color[White] = c1.pixel;
 
   /* Window Position Set */
   w[0] = XCreateSimpleWindow(d, RootWindow(d,0), 0, 0, 480, 500, 2,

@@ -73,15 +73,15 @@ void   open_xnet(void)   /* XNET */
 ***/
 void xnet_drag(void)   
 {
-  static int x0=0;
-  static int y0=0;
+  //  static int x0=0;
+  //  static int y0=0;
   static int button_pressed=0; 
 
   XSelectInput(d, w[7], ButtonPressMask | ButtonReleaseMask);
 
   if(XCheckWindowEvent(d, w[7], ButtonPressMask, &e)){
-    x0 = e.xbutton.x;  
-    y0 = e.xbutton.y; 
+    //    x0 = e.xbutton.x;  
+    //    y0 = e.xbutton.y; 
     if(e.xbutton.button==1) button_pressed = 1;
     if(e.xbutton.button==2) button_pressed = 2;
     if(e.xbutton.button==3) button_pressed = 3;

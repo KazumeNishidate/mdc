@@ -51,22 +51,22 @@ void open_xd(void)
     xd_sin_the = sin(xd_theta);
 
     xyz_shift = 183.0/2.0+7.0;
-    x_shift = ((int)xyz_shift*(int)(xd_cos_phy+xd_sin_phy-1.0))+15;
+    x_shift = ((int)xyz_shift*(int)(xd_cos_phy+xd_sin_phy-1.0))+5;
     y_shift = ((int)xyz_shift*(int)(xd_sin_phy*xd_sin_the+xd_cos_the-
-			       xd_cos_phy*xd_sin_the-1.0))-10;
+			       xd_cos_phy*xd_sin_the-1.0))-20;
     counter = 1;
   }
 
   /*- re-scale all of the atomic positions -*/
-  x_scale = (int)(180.0/sys.Lx);
-  y_scale = (int)(180.0/sys.Ly);
-  z_scale = (int)(180.0/sys.Lz);      
+  x_scale = (int)(190.0/sys.Lx);
+  y_scale = (int)(190.0/sys.Ly);
+  z_scale = (int)(190.0/sys.Lz);      
 
   /*- XD projection views for [XY YZ ZX XYZ] surfaces -*/
   for(i=0; i<sys.N; i++) {
-    ptx = (int)(sys.rx[i]*x_scale)+9; 
-    pty = (int)(sys.ry[i]*y_scale)+9; 
-    ptz = (int)(sys.rz[i]*z_scale)+9; 
+    ptx = (int)(sys.rx[i]*x_scale)+20; 
+    pty = (int)(sys.ry[i]*y_scale)+20; 
+    ptz = (int)(sys.rz[i]*z_scale)+20; 
     
     xypts[i].x = ptx;
     xypts[i].y = pty;
@@ -75,9 +75,9 @@ void open_xd(void)
     zxpts[i].x = ptz;
     zxpts[i].y = ptx;
     xyzpts[i].x = (int)((double)ptx*xd_cos_phy+
-			(double)ptz*xd_sin_phy)-x_shift;
+			(double)ptz*xd_sin_phy)*0.85-x_shift;
     xyzpts[i].y = (int)((double)ptx*xd_sin_phy*xd_sin_the+
-		(double)pty*xd_cos_the-(double)ptz*xd_cos_phy*xd_sin_the)-
+		(double)pty*xd_cos_the-(double)ptz*xd_cos_phy*xd_sin_the)*0.85-
 		  y_shift;
 
     XSetForeground (d, gc, color[sys.ion[i]]);

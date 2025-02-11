@@ -1,6 +1,6 @@
 ### Makefile
 CC= gcc
-CFLAGS= -Wall -O2 -finline-functions -fomit-frame-pointer -funroll-loops
+CFLAGS= -Wall -O2
 ##############################################################
 
 ### Include files and library ################################
@@ -20,12 +20,12 @@ SOURCES= main.c ext.c pt.c control.c init.c\
 	 files.c real.c rcprcl.c rv.c msd.c\
 	 ./xsrc/xdmain.c ./xsrc/xdinit.c ./xsrc/xdicon.c\
 	 ./xsrc/xhist.c ./xsrc/xmsd.c ./xsrc/xnet.c\
-	 ./xsrc/network.c ./xsrc/xunit.c ./xsrc/xmycolor.c 
+	 ./xsrc/network.c ./xsrc/xunit.c 
 OBJECTS= main.o ext.o pt.o control.o init.o\
 	 files.o real.o rcprcl.o rv.o msd.o\
 	 ./xsrc/xdmain.o ./xsrc/xdinit.o ./xsrc/xdicon.o\
 	 ./xsrc/xhist.o ./xsrc/xmsd.o ./xsrc/xnet.o\
-	 ./xsrc/network.o ./xsrc/xunit.o ./xsrc/xmycolor.o 
+	 ./xsrc/network.o ./xsrc/xunit.o 
 
 TARGET= md 
 

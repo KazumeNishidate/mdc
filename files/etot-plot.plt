@@ -14,7 +14,8 @@ set  size   0.8, 0.7
 set  origin 0.12, 0.1
 
 ## *** Plot range ***
-set yrange [-770.5:-769.5]
+# set yrange [-770.5:-769.5]
+set yrange [-170.0:-190.0]
 
 set xzeroaxis
 set grid x

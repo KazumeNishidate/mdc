@@ -61,6 +61,10 @@ void   next_rv_gear(void);
 /* msd.c */
 void   calc_msd(void);
 
+//  ./eggx/disp.c
+void egg_disp(void);
+
+
 /* ./xsrc/network.c */
 void   network(void);
 
@@ -94,7 +98,3 @@ void   xnet_drag(void);
 /* ./xsrc/xunit.c */
 void   open_xunit(void);
 void   xunit_drag(void);
-
-/* xmycolor.c */
-unsigned long MyColor();
-

@@ -17,6 +17,7 @@
 #define PRES_MAX 5          /* set pressure scale Max [GPa]  */
 
 /*------------  X Window related declaration  ---------------------------*/
+
  Display *d;
  GC gc;
  XEvent e;
@@ -46,4 +47,7 @@ enum{Red, Blue, Green, Yellow, Orange, Cyan, BlueViolet, LimeGreen,
 	Coral, Khaki, SpringGreen, LightGray, Magenta, SlateBlue, Black,
 	White};
 /*-----------------------------------------------------------------------*/
+unsigned long MyColor(Display *d, char *clr);
+
+
 
