@@ -82,4 +82,3 @@ void	real_space(void)
     }	     
   }
 }
-

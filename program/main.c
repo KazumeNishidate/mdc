@@ -51,7 +51,7 @@ void  newton(void)
 
     /* pressure and temprature control */
     // control_press(ctl.p_control_step);
-    if(sys.step < 3000){
+    if(sys.step < 500){
       control_temp(ctl.t_control_step, ctl.temp);
     }
 

@@ -1,17 +1,9 @@
- AgI (super ionic conductor)
+NaCl crystal with Huggins-Mayer potentail.
 
-REF.:
+potential function;  generalized Huggins-Mayer form
+parameters;          Tosi-Fumi set
 
-[1] Y. Kaneko and A. Ueda, "Dynamic Correlation and Cation Diffusion
-    in alpha-AgI", J. Phys. Soc. Jpn., Vol. 55, No. 11, 3924 (1986).
+REF.: 
 
-[2] A. Fukumoto, A. Ueda, and Y. Hiwatari, "Molecular Dyanmic Studies of
-    Superionic Conductors. Interionic Potential and Ion-Conducting
-    Phase", J. Phys. Soc. Jpn., 3966 (1982).
-
-[3] Y. Kaneko and A. Ueda, "Dynamics and Mechanism of Diffusion in
-    Superionic Conductors", Strongly Coupled Plasma Physics,
-    S. Ichimaru (ed.), Elsevier Science Publishers B. V. / Yamada
-    Science Foundation, 631 (1990)
-
-----------------------------------------------------------------------
+[1] F. G. Fumi and M. P. Tosi, J. Phys. Chem. Solids, Vol. 25, 31 (1964).
+[2] M. P. Tosi and F. G. Fumi, J. Phys. Chem. Solids, Vol. 25, 45 (1964).
