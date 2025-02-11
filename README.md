@@ -4,6 +4,9 @@
   kazume.nishidate@gmail.com
 -------------------------------------------------------------
 
+  * manual: please refer to the Sec. 7.1 of
+            http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf
+
   * By default, it calculates a microcanonical ensemble.
 
   * The example directory contains other model systems.
