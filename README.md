@@ -5,7 +5,12 @@
                  kazume.nishidate@gmail.com
 
 ### Manual (in Japanese)
-     Please refer to the Sec. 7.1 of [the manual page (Japanese)](http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf]or more information.	    
+     Please refer to the Sec. 7.1 of the link
+     
+     http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf
+
+     for more information.	    
+
 ### The 'examples' directory contains following systems.
   
 - NaCl.hm:  NaCl with Huggins-Mayer potentail (default system)
