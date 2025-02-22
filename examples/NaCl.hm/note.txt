@@ -1,8 +1,5 @@
 NaCl crystal with Huggins-Mayer potentail.
 
-potential function;  generalized Huggins-Mayer form
-parameters;          Tosi-Fumi set
-
 REF.: 
 
 [1] F. G. Fumi and M. P. Tosi, J. Phys. Chem. Solids, Vol. 25, 31 (1964).
