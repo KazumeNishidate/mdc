@@ -1,14 +1,11 @@
 
-# MDC: Classical Molecular Dynamics Simulation Package in C
 
-### Manual (in Japanese)
-     Please refer to the Sec. 7.1 of
-      http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf
-  for more information.	    
+# MDC: Classical Molecular Dynamics Simulation Package in C
 
                  kazume.nishidate@gmail.com
 
-
+### Manual (in Japanese)
+     Please refer to the Sec. 7.1 of [http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf][http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf]] for more information.	    
 ### The 'examples' directory contains following systems.
   
 - NaCl.hm:  NaCl with Huggins-Mayer potentail (default system)
