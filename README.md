@@ -5,7 +5,7 @@
                  kazume.nishidate@gmail.com
 
 ### Manual (in Japanese)
-     Please refer to the Sec. 7.1 of [http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf][http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf]] for more information.	    
+     Please refer to the Sec. 7.1 of [the manual page (Japanese)](http://web.cc.iwate-u.ac.jp/~nisidate/main.pdf]or more information.	    
 ### The 'examples' directory contains following systems.
   
 - NaCl.hm:  NaCl with Huggins-Mayer potentail (default system)
@@ -22,7 +22,7 @@
       make
     and run the code with
       ./md
-    command.
+    
     
 ### X window.
     To make the X-Window version, use the following commands.
