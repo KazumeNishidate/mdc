@@ -1,20 +1,14 @@
-### Makefile
 CC= gcc
 CFLAGS= -Wall -O2
-##############################################################
 
-### Include files and library ################################
 ###  where is the X include file "Xlib.h" and "Xutil.h"?
 INC=  -I/usr/include/X11R5 -I/usr/include/X11 -I/usr/X11R6/include/X11 -I/opt/X11/include
 
 ###  where is the X library "libX11.a"?
 LIBS= -lm -L/usr/X11R6/lib -lX11
-##############################################################
 
-###  Run options  ############################################
 ## to display in X Window
 RUN_OPTIONS= -DXD
-#############################################################
 
 SOURCES= main.c ext.c pt.c control.c init.c\
 	 files.c real.c rcprcl.c rv.c msd.c\
@@ -37,13 +31,4 @@ $(TARGET)	:$(OBJECTS)
 
 clean	:
 	rm -f $(TARGET) $(OBJECTS) *~ "#"* *.ln ./xsrc/*~ ./xsrc/"#"* ./xsrc/*.ln
-
-lint	:
-	lint $(SOURCES)
-
-cflow   :
-	cflow $(SOURCES)
-
-fclean  :
-	rm -f ../files/[a-z]*
 

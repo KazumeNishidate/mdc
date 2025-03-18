@@ -1,12 +1,6 @@
-### Compile command #########################################
-###  for FreeBSD of Linux with gcc
 CC= gcc
 CFLAGS= -Wall -O2 -finline-functions -fomit-frame-pointer -funroll-loops
-##############################################################
-
-### Include files and library ##############################
 LIBS= -lm
-############################################################
 
 SOURCES= main.c ext.c pt.c control.c init.c\
 	 files.c real.c rcprcl.c rv.c msd.c
@@ -25,12 +19,4 @@ $(TARGET)	:$(OBJECTS)
 clean	:
 	rm -f $(TARGET) $(OBJECTS) *~ "#"* *.ln ./xsrc/*~ ./xsrc/"#"* ./xsrc/*.ln
 
-lint	:
-	lint $(SOURCES)
-
-cflow   :
-	cflow $(SOURCES)
-
-fclean  :
-	rm -f ../files/[a-z]*
 
