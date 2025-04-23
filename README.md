@@ -32,6 +32,8 @@ NaCl.hm:  NaCl with Huggins-Mayer potential (default system)
 
   	./md
 
+If you encounter a 'multiple definition error' during the GCC compilation, you can avoid it by adding the option '-z muldefs' in the Makefile.
+
 ### X window.
 
 To make the X-Window version, use the following commands.
