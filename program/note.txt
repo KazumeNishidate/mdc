@@ -1,7 +1,6 @@
-(5,5) CNT with Abell-Tersoff potential.
+NaCl crystal with Huggins-Mayer potentail.
 
 REF.: 
-  - G. C. Abell, Phys. Rev. B31, 6184 (1985).
-  - B. W. Dodson, Phys. Rev. B35, 2795 (1987).
-  - J. Tersoff, Phys. Rev. B39, 5566 (1989).
 
+[1] F. G. Fumi and M. P. Tosi, J. Phys. Chem. Solids, Vol. 25, 31 (1964).
+[2] M. P. Tosi and F. G. Fumi, J. Phys. Chem. Solids, Vol. 25, 45 (1964).

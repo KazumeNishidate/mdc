@@ -1,23 +1,30 @@
-/*********************************************************************/
-/*  Carbon (diamond structure) with J.Tersoff potential              */
-/*********************************************************************/
-FILE *ftube;
 
-typedef struct{
-  double A;
-  double B;
-  double lam;
-  double mu;
-  double beta;
-  double n;
-  double c;
-  double d;
-  double h;
-  double R;
-  double S;
-  double x;
+typedef struct {
+  /* --------------------------------------------------------------- */
+  /*   Born-Mayer-Huggins potential with Tosi-Fumi parameter set     */
+  /*   see set_potential_hm() in "control.c" and references          */
+  /* --------------------------------------------------------------- */
+  double b;
+  double c_na_na;
+  double c_na_cl;
+  double c_cl_cl;
 
-} potential_at_set;
+  double sigma_na;
+  double sigma_cl;
+
+  double rho;
+
+  double C_na_na;
+  double C_na_cl;
+  double C_cl_cl;
+
+  double D_na_na;
+  double D_na_cl;
+  double D_cl_cl;
+
+} huggins_mayer_potential_set;
 
 /*------------------- declaration for the structures ----------------------*/
-  potential_at_set at;
+  huggins_mayer_potential_set hm;
+
+
