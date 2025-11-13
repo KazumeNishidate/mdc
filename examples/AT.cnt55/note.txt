@@ -1,5 +1,10 @@
 (5,5) CNT with Abell-Tersoff potential.
 
+Atomic positions for the (5,5) nanotube unit were generated using the
+program 'nanotube maker'. And then, it was extended 5 times along the
+axial direction using the VESTA.
+
+
 REF.: 
   - G. C. Abell, Phys. Rev. B31, 6184 (1985).
   - B. W. Dodson, Phys. Rev. B35, 2795 (1987).

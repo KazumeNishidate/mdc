@@ -18,7 +18,6 @@ void  newton(void)
 
   /* for the estimation of alpha value [optional]     */
   /* calc_alpha(); */
-  
   mk_table();   /* make up the table for force and potential */
 
   /*********************************************************************/

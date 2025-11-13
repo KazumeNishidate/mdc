@@ -19,6 +19,7 @@ NaCl.hm:  NaCl with Huggins-Mayer potential (default system)
 - CaF2:     Superionic conductor with the soft-core potential
 - SW.Si:    Silicon with Stillinger Weber potential
 - AT.C60:   C60 with Abell-Tersoff potential
+- AT.cnt55: (5,5) Carbon nanotube with Abell-Tersoff potential
 - AT.Ge:    Germanium with Abell-Tersoff potential
 - AT.Si:   Si with Abell-Tersoff potential
 
