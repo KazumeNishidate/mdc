@@ -1,12 +1,34 @@
 (5,5) CNT with Abell-Tersoff potential.
 
 Atomic positions for the (5,5) nanotube unit were generated using the
-program 'nanotube maker'. And then, it was extended 5 times along the
+program 'tube'. And then, it was extended 5 times along the
 axial direction using the VESTA.
 
+The vdW interaction is included. See the line of
+  calc_vdw();
+in the 'real.c'.
 
-REF.: 
+The vdW potential parameters are set in the 'control.c'. Where the vdW
+force is active in the region of vdw.cut_in < r < vdw.cut_out.
+
+Temperature should be regulated at least for the first 1000 time steps
+to stabilize the system.
+
+REF.:
+
+AT potential
   - G. C. Abell, Phys. Rev. B31, 6184 (1985).
   - B. W. Dodson, Phys. Rev. B35, 2795 (1987).
   - J. Tersoff, Phys. Rev. B39, 5566 (1989).
+
+vdW potential
+  - C. Li, T.-W. Chou, Composites Sci. Technol. 63, 1517 (2003).
+    https://doi.org/10.1016/S0266-3538(03)00072-1
+  - H. Hemmatian, M.R. Zamani, JE Jam, J. Theoret. Appl. Mech. 57, 207 (2019).
+    http://jtam.pl/,103001,0,2.html
+  - L. Battezzatti, C. Pisani and F. Ricca, J. Chem. Soc. 71, 1629 (1975).
+    https://pubs.rsc.org/en/content/articlelanding/1975/f2/f29757101629/unauth
+    
+
+
 

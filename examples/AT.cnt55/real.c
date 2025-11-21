@@ -4,6 +4,107 @@
 #include  "md.h"
 #include  "prototypes.h"
 
+void   check_vdw(void){
+  int i;
+  double xij, rij=0.0;
+  double sigr13, sigr12, sigr7, sigr6;
+  double pot, fxi, fxj;
+  
+  for(i=0;i<1000;i++){
+    rij = 1.0 + 0.01 * (double)i;
+    xij = rij;
+    sigr6  = pow((vdw.sig/rij), 6);
+    sigr7  = pow((vdw.sig/rij), 7);
+    sigr12 = pow((vdw.sig/rij),12);
+    sigr13 = pow((vdw.sig/rij),13);	
+	
+    pot = 4.0*vdw.eps*(sigr12 - sigr6);
+
+    // force for the 'i' atom
+    fxi  = -(xij/rij)*24.0*(vdw.eps/vdw.sig)*(2.0*sigr13 - sigr7);
+
+    fxi *= (vdw.sig/vdw.eps);  // scale the quantity to make plot data
+    fxj = -fxi;                // force to the 'j' atom
+    rij /=vdw.sig;              
+    pot /=vdw.eps;              
+    
+    printf("%lf  %lf  %lf  \n",rij,pot,fxj);
+    
+  }
+  exit(0);
+}
+
+void   calc_vdw(void){
+  int i, j, cnt=0;
+  double xij, yij, zij, rij;
+  static double rdx, rdy, rdz;
+  double f1, sigr13, sigr12, sigr7, sigr6;
+
+  if(cnt==0){
+    cnt++;
+    rdx = sys.Lx*0.5;
+    rdy = sys.Ly*0.5;
+    rdz = sys.Lz*0.5;
+    if(vdw.cutoff > rdx) {   // to prevent the double count in the vdW calc.
+      printf("caution! \n");    
+      printf("sys.Lx is smaller than the half of the vdw.cutoff.\n");
+      printf("vdw.cutoff was changed from %lf to %lf to avoid the inconsistency\n\n",vdw.cutoff, rdx);
+      vdw.cutoff = rdx;
+    }
+    if(vdw.cutoff > rdy) {
+      printf("caution! \n");      
+      printf("sys.Ly is smaller than the half of the vdw.cutoff.\n");    
+      printf("vdw.cutoff was changed from %lf to %lf to avoid the inconsistency\n\n",vdw.cutoff, rdy);
+      vdw.cutoff = rdy;
+    }
+    if(vdw.cutoff > rdz) {
+      printf("caution! \n");
+      printf("sys.Lz is smaller than the half of the vdw.cutoff.\n");        
+      printf("vdw.cutoff was changed from %lf to %lf to avoid the inconsistency\n\n",vdw.cutoff, rdz);
+      vdw.cutoff = rdz;
+    }
+  }
+
+  for(i=0;i<sys.N;i++) {
+    for(j=i+1;j<sys.N;j++) {
+      xij = sys.rx[i] - sys.rx[j];
+      yij = sys.ry[i] - sys.ry[j];
+      zij = sys.rz[i] - sys.rz[j];
+
+      if(xij > rdx) xij -= sys.Lx;	// cyclic boundary condition
+      if(yij > rdy) yij -= sys.Ly;
+      if(zij > rdz) zij -= sys.Lz;
+      if(xij < -rdx) xij += sys.Lx;
+      if(yij < -rdy) yij += sys.Ly;
+      if(zij < -rdz) zij += sys.Lz;
+      rij = sqrt(xij*xij + yij*yij + zij*zij);
+      
+      if(rij > vdw.cutoff) continue;  // cutoff radius
+      if(rij < vdw.sig) continue;     // at where the V_vdW becomes 0.0
+
+      sigr6  = pow((vdw.sig/rij), 6);
+      sigr7  = pow((vdw.sig/rij), 7);
+      sigr12 = pow((vdw.sig/rij),12);
+      sigr13 = pow((vdw.sig/rij),13);	
+	
+      sys.pot += 4.0*vdw.eps*(sigr12 - sigr6);
+      f1       = 24.0*(vdw.eps/vdw.sig)*(2.0*sigr13 - sigr7);
+	
+      sys.fx[i] += -(xij/rij)*f1;
+      sys.fy[i] += -(yij/rij)*f1;
+      sys.fz[i] += -(zij/rij)*f1;
+      sys.fx[j] -= -(xij/rij)*f1;
+      sys.fy[j] -= -(yij/rij)*f1;
+      sys.fz[j] -= -(zij/rij)*f1;
+	
+      /* 2-body part for VIRIAL */
+      sys.virX += -(xij/rij)*f1*xij;
+      sys.virY += -(yij/rij)*f1*yij;
+      sys.virZ += -(zij/rij)*f1*zij;
+    }
+  }
+}
+
 /*-----------------------------------------------------------------------*/
 /*  The function for potential and force calculation with Abell Tersoff  */ 
 /*  potentail set.                                                       */
@@ -40,6 +141,11 @@ void	real_space(void) {
   sys.virY = 0.0;
   sys.virZ = 0.0;
 
+  //  check_vdw();
+  
+  // comment out this line to exclude the vdW force
+  calc_vdw();      
+  
   for(i=0;i<sys.N;i++) {
     for(j=0;j<sys.N;j++) {
       if(i==j) continue;

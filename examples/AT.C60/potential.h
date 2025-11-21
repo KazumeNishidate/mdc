@@ -18,5 +18,17 @@ typedef struct{
 
 } potential_at_set;
 
+typedef struct{
+  double sig;
+  double eps;
+  double cut_out;
+  double cut_in;
+} vdw_set;
+
+// real.c 
+void   check_vdw(void);
+void   calc_vdw(void);
+
 /*------------------- declaration for the structures ----------------------*/
-  potential_at_set at;
+potential_at_set at;
+vdw_set vdw;

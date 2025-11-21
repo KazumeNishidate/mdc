@@ -42,13 +42,13 @@ void  newton(void)
     /*    no_display(); */
     /*============================================================*/
 
-    /* MSD. calculation [optional] */
+    // MSD. calculation [optional]
     calc_msd();  
 
-    /* file output              */
+    // file output
     print_to_file();
 
-    /* pressure and temprature control */
+    // pressure and temprature control
     // control_press(ctl.p_control_step);
     // control_temp(ctl.t_control_step, ctl.temp);
 

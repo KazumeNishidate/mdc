@@ -17,7 +17,7 @@ void get_control_param(void)
   ctl.calc_max = 400000;       /* maximum MD time step                       */
   ctl.delta_time_fs = 0.38317;  /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s] */
 
-  ctl.temp = 10.0;             /* Temperature setting [K]                    */
+  ctl.temp = 100.0;             /* Temperature setting [K]                    */
   ctl.t_control_step = 5;     /* scale at every ctl.t_control_step steps    */
   ctl.set_press_GPa_X = 0.01; /* Pressure setting  [GPa]                    */
   ctl.set_press_GPa_Y = 0.01; 
@@ -148,6 +148,23 @@ void set_potential(void)
   m_C = 12.011 /(6.0221367 * 1.6605402 / 10.0); /* [m_u] */
 
   ion.m[0] = m_C; // all Carbon
+  
+  // vdW set for carbon systems
+  //
+  // - C. Li and TW. Chou,
+  //   Composites Sci. and Techol. 63, 1517-1524 (2003).
+  // - H. Hemmatian, M.R. Zamani, JE Jam,
+  //   J. Theoret. Appl. Mech. 57, 207 (2019).
+  // - L. Battezzati, C. Pisani, and F. Ricca,
+  //   J. Chem. Soc. 71, 1629-1639 (1975).
+
+  vdw.sig = 3.4;                     // [angstrom]
+  vdw.eps = 0.0556 * 6.94769546e-3;  // [kcal/mol -> en]
+
+
+  vdw.cut_out = 2.5*vdw.sig; // definition of the inner and the outer cutoff radii
+  vdw.cut_in  = 2.8;         //     F_vdW active region {r}:  cut_in < r < cut_out
+  
 
   /* ------------ A.T Potential Set --------------*/
   at.A = 1.3936e3 * 1.60217733e-1;  /* [eV -> en] */

@@ -45,7 +45,7 @@ void   control_temp(int d_step, double temp);
 void   reciprocal_space(void);
 void   reciprocal_space3(void);
 
-/* real.c */
+// real.c
 void   real_space(void);
 void   real_vdW(void);
 

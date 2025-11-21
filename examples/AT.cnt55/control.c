@@ -4,9 +4,8 @@
 #include  "md.h"
 #include  "prototypes.h"
 
-/*********************************************************************/
-/*  Carbon (diamond structure) with Abell Tersoff potential          */
-/*********************************************************************/
+//  Carbon nanotube with Abell Tersoff potential
+
 /*****
 *  purpose: system initialisation
 *  all valiables are specified in a MD calculational unit.
@@ -21,7 +20,7 @@ void get_control_param(void)
   ctl.calc_max = 500000;        /* maximum MD time step                     */
   ctl.delta_time_fs = 0.38317;  /* 1 [fs] = 0.001 [ps] = 1.0 X 10^(-15) [s] */
 
-  ctl.temp = 100.0;           /* Temperature setting [K]                    */
+  ctl.temp = 10.0;           /* Temperature setting [K]                    */
   ctl.t_control_step = 5;     /* scale at every ctl.t_control_step steps    */
   ctl.set_press_GPa_X = 0.01; /* Pressure setting  [GPa]                    */
   ctl.set_press_GPa_Y = 0.01; 
@@ -41,8 +40,8 @@ void get_control_param(void)
   fscanf(ftube,"%lf %lf %lf \n",&xx, &xx, &sys.Az);
   fgets(dumy, 200,ftube); 
   fscanf(ftube,"%d  \n",&num); // read the number of atoms
-  printf("%d \n",num);
-  fgets(dumy, 200,ftube);   
+
+  fgets(dumy, 200,ftube);
   ctl.natoms_in_unit_cell = num;
   ctl.natoms_in_mol_unit  = num;
   sys.N = num;
@@ -97,6 +96,19 @@ void set_potential(void)
 
   ion.m[0] = m_C; // all Carbon
 
+  // vdW set for carbon systems
+  //
+  // - C. Li and TW. Chou,
+  //   Composites Sci. and Techol. 63, 1517-1524 (2003).
+  // - H. Hemmatian, M.R. Zamani, JE Jam,
+  //   J. Theoret. Appl. Mech. 57, 207 (2019).
+  // - L. Battezzati, C. Pisani, and F. Ricca,
+  //   J. Chem. Soc. 71, 1629-1639 (1975).
+
+  vdw.sig = 3.4;                     // [angstrom]
+  vdw.eps = 0.0556 * 6.94769546e-3;  // [kcal/mol -> en]
+  vdw.cutoff = 2.5*vdw.sig;  // cutoff radius [angstrom] for the vdW force
+  
   /* ------------ A.T Potential Set --------------*/
   at.A = 1.3936e3 * 1.60217733e-1;  /* [eV -> en] */
   at.B = 3.4670e2 * 1.60217733e-1;  /* [eV -> en] */

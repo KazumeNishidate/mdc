@@ -19,5 +19,13 @@ typedef struct{
 
 } potential_at_set;
 
+typedef struct{
+  double sig;
+  double eps;
+  double cutoff;
+} vdw_set;
+
 /*------------------- declaration for the structures ----------------------*/
-  potential_at_set at;
+potential_at_set at;
+vdw_set vdw;
+
